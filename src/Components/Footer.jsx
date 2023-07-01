@@ -1,6 +1,7 @@
+import "./footer.css"
 const Footer = () => {
   return (
-    <footer>
+    <footer className="footer-container">
         <p>Powered by</p>
         <img src="../../public/DH.ico" alt='DH-logo' />
     </footer>

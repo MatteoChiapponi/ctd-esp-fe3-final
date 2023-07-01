@@ -1,15 +1,17 @@
-import "./App.css";
+import "./index.css";
 import { Routes, Route } from "react-router-dom";
 import routes from "./Components/utils/Routes";
 import Home from "./Components/Home";
-import Contact from "./Components/Contact";
+import Contact from "./Components/Contact/Contact";
 import Dentist from "./Components/Dentist";
-import Favs from "./Favs";
+import Favs from "./Components/Favs";
 import Layout from "./Components/Layout";
+import { useGlobalStates } from "./Components/utils/global.context";
 
 function App() {
+  const { states } = useGlobalStates();
   return (
-    <>
+    <div className={states.theme ? "dark" : "light"}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path={routes.home} element={<Home />} />
@@ -22,7 +24,7 @@ function App() {
           />
         </Route>
       </Routes>
-    </>
+    </div>
   );
 }
 

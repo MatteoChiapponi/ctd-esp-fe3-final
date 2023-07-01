@@ -1,36 +1,37 @@
 import { Link } from "react-router-dom";
 import { useGlobalStates } from "./utils/global.context";
+import "./card.css";
 
-const Card = ({ origin, name, username, id }) => {
-  const { favs, setFavs } = useGlobalStates();
-  const addFav = () => {
-    // Aqui iria la logica para agregar la Card en el localStorage
-    const dentist = {
-      nombre: name,
-      usuario: username,
-      id: id,
-    };
-    const newFavs = [...favs, dentist];
-    localStorage.setItem("favs", JSON.stringify(newFavs));
-    setFavs(newFavs);
-  };
-  const removeFav = () => {
-    const newFavs = favs.filter((dentist) => dentist.id !== id);
-    localStorage.setItem("favs", JSON.stringify(newFavs));
-    setFavs(newFavs);
+const Card = ({ name, username, id, reducer }) => {
+  const { states, dispatch } = useGlobalStates();
+  const isFav = states.favs.some((den) => den.id === id);
+
+  const dispatcherInfo = {
+    type: reducer.actionType,
+    payload: reducer.payload,
   };
 
-  const buttonText = origin ? origin : "add fav";
   return (
-    <div className="card">
-      {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-      <h3>{name}</h3>
-      <Link to={"dentist/" + id}>
+    <article className="card-container">
+      <Link to={"/dentist/" + id}>
+        <h2>{name}</h2>
         <p>username: {username}</p>
+        <p>id: {id}</p>
+        <p>{isFav ? "ya es fav" : "no es fav"}</p>
       </Link>
-      <p>id: {id}</p>
-      <button onClick={origin ? removeFav : addFav}>{buttonText}</button>
-    </div>
+      {isFav && reducer.actionType === "remove fav" ? (
+        <button onClick={() => dispatch(dispatcherInfo)}>
+          {reducer.actionType}
+        </button>
+      ) : (
+        !isFav &&
+        reducer.actionType === "add fav" && (
+          <button onClick={() => dispatch(dispatcherInfo)}>
+            {reducer.actionType}
+          </button>
+        )
+      )}
+    </article>
   );
 };
 

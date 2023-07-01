@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getUserDetail } from "../Services/dentisService";
+import "./dentist.css"
 
 const Dentist = () => {
   const [dentistDetail, setDentistDetail] = useState({});
@@ -10,8 +11,8 @@ const Dentist = () => {
     getUserDetail(id).then((dentistDetail) => setDentistDetail(dentistDetail));
   }, []);
   const showDentistDetail = (
-    <div>
-      <h3>{dentistDetail.name}</h3>
+    <>
+      <h1>{dentistDetail.name}</h1>
       <p>- contacto: {dentistDetail.email}</p>
       <p>- contacto: {dentistDetail.phone}</p>
       <p>- contacto: {dentistDetail.website}</p>
@@ -22,9 +23,9 @@ const Dentist = () => {
       >
         back
       </button>
-    </div>
+    </>
   );
-  return <div>{showDentistDetail}</div>;
+  return <main className="detail-container">{showDentistDetail}</main>;
 };
 
 export default Dentist;

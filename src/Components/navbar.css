@@ -1,0 +1,30 @@
+header {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	align-items: center;
+	padding: 1rem;
+}
+
+header nav {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-around;
+	align-items: center;
+	height: 100%;
+}
+
+
+
+nav a:hover {
+	color: #4AC7B3;
+	background: linear-gradient(90deg, #4AC7B3 0%, #0091FC 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+
+.dark>header {
+	background-color: hsl(240, 10%, 16%);
+}

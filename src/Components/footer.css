@@ -1,0 +1,11 @@
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    gap: 1rem;
+  }
+  .dark .footer-container {
+      background-color: hsl(240, 10%, 16%);
+  }
